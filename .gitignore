@@ -1,3 +1,2 @@
 *.pyc
-apps/core/static/
-apps/core/templates/
+apps/frontend/static/vendor
