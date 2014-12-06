@@ -5,18 +5,18 @@ angular.module( 'lk.intro', [
 
 .config(['$stateProvider', function ($stateProvider) {
   $stateProvider.state( 'intro', {
-    url: '/intro?name',
+    url: '/intro?member_id',
     views: {
       "main": {
         controller: 'IntroCtrl',
         templateUrl: '/static/js/intro/intro.tpl.html'
       }
+    },
+    resolve: {
+      'member': ['Data', '$stateParams', function (Data, $stateParams) {
+        return Data.getName($stateParams.member_id);
+      }]
     }
-    // resolve: {
-    //   'name': ['Data', function(Data) {
-    //     return Data.getName();
-    //   }]
-    // }
   });
 }])
 
@@ -25,13 +25,16 @@ angular.module( 'lk.intro', [
   '$scope', 
   '$stateParams',
   '$timeout', 
+  'member',
 function (
   $scope, 
   $stateParams,
-  $timeout
+  $timeout,
+  member
 ) {
-  $scope.name = $stateParams.name;
   $scope.introTrack = new Audio('/static/assets/audio/Intro.m4a');
+
+  $scope.member = member.data;
 
   $scope.start = function() {
     $('.play').hide();
@@ -41,5 +44,4 @@ function (
     }, 2000);
   };
 
-  
 }]);
