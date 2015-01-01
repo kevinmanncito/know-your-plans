@@ -14,7 +14,12 @@ angular.module( 'lk.intro', [
     },
     resolve: {
       'member': ['Data', '$stateParams', function (Data, $stateParams) {
-        return Data.getName($stateParams.member_id);
+        if (angular.isDefined($stateParams.member_id)) {
+          return Data.getName($stateParams.member_id);
+        } else {
+          $stateParams.member_id = 1;
+          return Data.getName($stateParams.member_id);
+        }
       }]
     }
   });

@@ -1,6 +1,5 @@
 angular.module( 'knowYourPlans', [
   'lk.intro',
-  'lk.landing',
   'lk.controls',
   'lk.data',
   'ui.router.state',
@@ -13,7 +12,7 @@ angular.module( 'knowYourPlans', [
 function (
   $urlRouterProvider
 ) {
-  $urlRouterProvider.otherwise( '/landing' );
+  $urlRouterProvider.otherwise( '/intro?member_id=1' );
 }])
 
 
