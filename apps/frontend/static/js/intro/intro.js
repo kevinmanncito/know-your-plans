@@ -28,25 +28,49 @@ angular.module( 'lk.intro', [
 
 .controller( 'IntroCtrl', [
   '$scope', 
-  '$stateParams',
-  '$timeout', 
   'member',
 function (
   $scope, 
-  $stateParams,
-  $timeout,
   member
 ) {
-  $scope.introTrack = new Audio('/static/assets/audio/Intro.m4a');
-
+  
   $scope.member = member.data;
 
-  $scope.start = function() {
-    $('.play').hide();
-    $scope.introTrack.play();
-    $timeout(function() {
-      $('.intro').fadeIn(1000);
-    }, 2000);
-  };
+}])
 
+
+.directive('introPres', ['$timeout', function($timeout){
+  return {
+    scope: {
+      member: '='
+    }, 
+    restrict: 'E', 
+    templateUrl: '/static/js/intro/intro.pres.tpl.html',
+    replace: true,
+    link: function($scope, elem, atts) {
+      $scope.introTrack = new Audio('/static/assets/audio/Intro.m4a');
+      $scope.start = function() {
+
+        $('.play').hide();
+        $scope.introTrack.play();
+
+        $timeout(function() {
+          var $intro = $('.intro');
+          $intro.show();
+          $intro.textillate( {
+            in: {
+              effect: 'fadeInDown'
+            }
+          });
+        }, 2000);
+
+        $timeout(function() {
+          $('.controls').fadeIn(1000);
+        }, 2000);
+
+      };
+    }
+  };
 }]);
+
+
