@@ -39,7 +39,15 @@ function (
 }])
 
 
-.directive('introPres', ['$timeout', function($timeout){
+.directive('introPres', [
+  '$timeout',
+  '$state',
+  '$window',
+function(
+  $timeout,
+  $state,
+  $window
+){
   return {
     scope: {
       member: '='
@@ -49,11 +57,20 @@ function (
     replace: true,
     link: function($scope, elem, atts) {
       $scope.introTrack = new Audio('/static/assets/audio/Intro.m4a');
-      $scope.start = function() {
 
+      var openEnrollmentEventObject = {
+        title: 'Open Enrollment',
+        allDay: true,
+        start: $scope.member.organization.open_enroll_start,
+        end: $scope.member.organization.open_enroll_end,
+        url: $scope.member.organization.enroll_url
+      };
+
+      $scope.start = function() {
         $('.play').hide();
         $scope.introTrack.play();
 
+        // Show the controls and welcome text
         $timeout(function() {
           var $intro = $('.intro');
           $intro.show();
@@ -62,13 +79,60 @@ function (
               effect: 'fadeInDown'
             }
           });
-        }, 2000);
-
-        $timeout(function() {
           $('.controls').fadeIn(1000);
         }, 2000);
 
+        // Show the calendar
+        $timeout(function() {
+          $('#calendar').fadeIn(1000);
+          $('#calendar').fullCalendar({
+            defaultDate: $scope.member.organization.open_enroll_start,
+            height: 450,
+            header: {
+              left: 'title',
+              center: '',
+              right: 'prev,next'
+            },
+            eventClick: function(event) {
+              if (event.url) {
+                $window.open(event.url);
+                return false;
+              }
+            }
+          });
+          $('#calendar').fullCalendar('renderEvent', openEnrollmentEventObject, []);
+          $('.intro').textillate( {
+            out: {
+              effect: 'hinge',
+              delayScale: 1.5,
+              delay: 50,
+              sync: false,
+              shuffle: false,
+              reverse: false,
+              callback: function () {}
+            },
+          });
+          // Transition the welcome text to the calendar header
+          $('.intro').textillate('out');
+          $timeout(function() {
+            $('.intro').hide();
+            $('.intro').html('Open Enrollment Dates');
+            $('.intro').fadeIn(1000);
+          }, 3000);
+        }, 4000);
+
       };
+
+      // Go to the next section
+      $scope.$on('nextEvent', function (event, data) {
+        console.log(data);
+        $('.intro').fadeOut(500);
+        $('.controls').fadeOut(500);
+        $('#calendar').fadeOut(500);
+        $timeout(function() {
+
+        });
+      });
     }
   };
 }]);

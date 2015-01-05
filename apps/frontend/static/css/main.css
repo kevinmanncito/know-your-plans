@@ -8,6 +8,7 @@
     height: 600px;
     width: 95%;
     width: 900px;
+    overflow: hidden;
 }
 
 .play {
@@ -34,9 +35,12 @@
 }
 
 .controls {
+    z-index: 100;
     display: none;
     position: absolute;
+    background-color: white;
     bottom: 10px;
+    left: 5px;
 }
 
 .prev {
@@ -81,4 +85,8 @@
     background-position: center;
     background-size: 50px;
     cursor: pointer;
+}
+
+#calendar {
+    display: none;
 }
