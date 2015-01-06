@@ -1,11 +1,13 @@
 angular.module('lk.controls', [])
 
 
-// .factory('currentAudio', [function(){
-//   return function name(){
-    
-//   };
-// }])
+.factory('stateManager', ['$state', function($state){
+  return {
+    firstLoad: true,
+    currentState: $state.get(),
+    isPresenting: false
+  };
+}])
 
 
 .directive('controls', [function() {
@@ -17,7 +19,7 @@ angular.module('lk.controls', [])
       
       $scope.next = function() {
         $scope.$emit('nextEvent', 'next section please!');
-      }
+      };
 
     }
   };

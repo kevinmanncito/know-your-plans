@@ -1,0 +1,42 @@
+<div>
+  <div class="play" ng-click="start()" ng-if="!stateManager.isPresenting"></div>
+  <table id="medical-table" ng-show="showTable">
+    <tr>
+      <th>Carrier</th>
+      <td ng-repeat="plan in plans">{{ plan.carrier.name }}</td>
+    </tr>
+    <tr>
+      <th>Plan Name</th>
+      <td ng-repeat="plan in plans">{{ plan.name }}</td>
+    </tr>
+    <tr>
+      <th>Co Pays</th>
+      <td ng-repeat="plan in plans">{{ plan.copays }}</td>
+    </tr>
+    <tr>
+      <th>Deductible</th>
+      <td ng-repeat="plan in plans">
+        {{ plan.family_deductable }}<br>
+        {{ plan.individual_deductable }}
+      </td>
+    </tr>
+    <tr>
+      <th>Coinsurance</th>
+      <td ng-repeat="plan in plans">{{ plan.co_insurance }}</td>
+    </tr>
+    <tr>
+      <th>Max Out Of Pocket</th>
+      <td ng-repeat="plan in plans">
+        {{ plan.moop_individual }}<br>
+        {{ plan.moop_family }}
+      </td>
+    </tr>
+    <tr>
+      <th>Monthly Costs</th>
+      <td ng-repeat="plan in plans">
+        <span ng-repeat="level in plan.levels">{{ level.cost }}<br></span>
+      </td>
+    </tr>
+  </table>
+  <controls class="controls" ng-show="stateManager.isPresenting || !stateManager.firstLoad"></controls>
+</div>

@@ -1,5 +1,6 @@
 angular.module( 'knowYourPlans', [
   'lk.intro',
+  'lk.medical',
   'lk.controls',
   'lk.data',
   'ui.router.state',

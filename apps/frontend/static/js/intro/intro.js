@@ -43,10 +43,12 @@ function (
   '$timeout',
   '$state',
   '$window',
+  'stateManager',
 function(
   $timeout,
   $state,
-  $window
+  $window,
+  stateManager
 ){
   return {
     scope: {
@@ -57,6 +59,7 @@ function(
     replace: true,
     link: function($scope, elem, atts) {
       $scope.introTrack = new Audio('/static/assets/audio/Intro.m4a');
+      $scope.stateManager = stateManager;
 
       var openEnrollmentEventObject = {
         title: 'Open Enrollment',
@@ -67,7 +70,7 @@ function(
       };
 
       $scope.start = function() {
-        $('.play').hide();
+        $scope.stateManager.isPresenting = true;
         $scope.introTrack.play();
 
         // Show the controls and welcome text
@@ -79,6 +82,7 @@ function(
               effect: 'fadeInDown'
             }
           });
+          $scope.stateManager.isPresenting = true;
           $('.controls').fadeIn(1000);
         }, 2000);
 
@@ -126,12 +130,13 @@ function(
       // Go to the next section
       $scope.$on('nextEvent', function (event, data) {
         console.log(data);
+        $scope.introTrack.pause();
+        $scope.stateManager.firstLoad = false;
         $('.intro').fadeOut(500);
-        $('.controls').fadeOut(500);
         $('#calendar').fadeOut(500);
         $timeout(function() {
-
-        });
+          $state.go('medical', {member_id: 1});
+        }, 500);
       });
     }
   };

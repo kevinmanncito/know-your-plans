@@ -36,7 +36,6 @@
 
 .controls {
     z-index: 100;
-    display: none;
     position: absolute;
     background-color: white;
     bottom: 10px;
@@ -89,4 +88,12 @@
 
 #calendar {
     display: none;
+}
+
+#medical-table {
+    text-align: left;
+}
+
+#medical-table tr {
+    margin: 5px;
 }
