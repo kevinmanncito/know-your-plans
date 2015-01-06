@@ -1,0 +1,181 @@
+[
+{
+  "fields": {
+    "lastname": "Mann",
+    "organization": 1,
+    "firstname": "Kevin",
+    "member_number": "51"
+  },
+  "model": "core.member",
+  "pk": 1
+},
+{
+  "fields": {
+    "sales_channel_number": "1",
+    "name": "Sales Guy!",
+    "description": ""
+  },
+  "model": "core.saleschannel",
+  "pk": 1
+},
+{
+  "fields": {
+    "sales_channel": 1,
+    "enroll_url": "http://lightningkite.com",
+    "name": "Lightning Kite",
+    "open_enroll_start": "2015-02-09",
+    "open_enroll_end": "2015-02-13",
+    "organization_number": "1"
+  },
+  "model": "core.organization",
+  "pk": 1
+},
+{
+  "fields": {
+    "logo": "",
+    "name": "United Health Care",
+    "short_name": "UHC"
+  },
+  "model": "core.carrier",
+  "pk": 1
+},
+{
+  "fields": {
+    "individual_deductable": "1.00",
+    "meta_info": [],
+    "name": "Personal Primary Access HMO",
+    "co_insurance": "1.00",
+    "moop_family": "1.00",
+    "plan_type": 1,
+    "levels": [],
+    "copays": "100.00",
+    "carrier": 1,
+    "moop_individual": "1.00",
+    "organization": 1,
+    "logo": "",
+    "family_deductable": "1.00",
+    "plan_number": "1",
+    "description": ""
+  },
+  "model": "core.plan",
+  "pk": 1
+},
+{
+  "fields": {
+    "individual_deductable": "1.00",
+    "meta_info": [],
+    "name": "Dental",
+    "co_insurance": "1.00",
+    "moop_family": "1.00",
+    "plan_type": 2,
+    "levels": [],
+    "copays": "100.00",
+    "carrier": 1,
+    "moop_individual": "1.00",
+    "organization": 1,
+    "logo": "",
+    "family_deductable": "1.00",
+    "plan_number": "2",
+    "description": ""
+  },
+  "model": "core.plan",
+  "pk": 2
+},
+{
+  "fields": {
+    "individual_deductable": "100.00",
+    "meta_info": [],
+    "name": "Personal Care PPO",
+    "co_insurance": "1.00",
+    "moop_family": "100.00",
+    "plan_type": 1,
+    "levels": [],
+    "copays": "$100.00 office visit | $75 specialist after deductable | $250 ER after deductable",
+    "carrier": 1,
+    "moop_individual": "100.00",
+    "organization": 1,
+    "logo": "",
+    "family_deductable": "100.00",
+    "plan_number": "100",
+    "description": ""
+  },
+  "model": "core.plan",
+  "pk": 3
+},
+{
+  "fields": {
+    "individual_deductable": "100.00",
+    "meta_info": [],
+    "name": "Personal Care HSA",
+    "co_insurance": "1.00",
+    "moop_family": "100.00",
+    "plan_type": 1,
+    "levels": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "copays": "$100.00 office visit",
+    "carrier": 1,
+    "moop_individual": "100.00",
+    "organization": 1,
+    "logo": "",
+    "family_deductable": "100.00",
+    "plan_number": "200",
+    "description": ""
+  },
+  "model": "core.plan",
+  "pk": 4
+},
+{
+  "fields": {
+    "cost": "450.00",
+    "name": "Employee"
+  },
+  "model": "core.level",
+  "pk": 1
+},
+{
+  "fields": {
+    "cost": "580.00",
+    "name": "Employee + Spouse"
+  },
+  "model": "core.level",
+  "pk": 2
+},
+{
+  "fields": {
+    "cost": "650.00",
+    "name": "Employee + Children"
+  },
+  "model": "core.level",
+  "pk": 3
+},
+{
+  "fields": {
+    "cost": "833.00",
+    "name": "Family"
+  },
+  "model": "core.level",
+  "pk": 4
+},
+{
+  "fields": {
+    "name": "Medical",
+    "value": "medical",
+    "description": ""
+  },
+  "model": "core.plantype",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "Dental",
+    "value": "dental",
+    "description": ""
+  },
+  "model": "core.plantype",
+  "pk": 2
+}
+]
