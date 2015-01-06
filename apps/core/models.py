@@ -82,7 +82,7 @@ class Level(models.Model):
 
 class PlanType(models.Model):
     name = models.CharField(max_length=255)
-    value = models.CharField(max_length=255)
+    value = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
