@@ -21,6 +21,10 @@ angular.module('lk.controls', [])
         $scope.$emit('nextEvent', 'next section please!');
       };
 
+      $scope.prev = function() {
+        $scope.$emit('prevEvent', 'prev section please!');
+      };
+
     }
   };
 }]);

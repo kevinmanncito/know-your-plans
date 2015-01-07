@@ -43,11 +43,13 @@ function (
   '$timeout',
   '$state',
   '$window',
+  '$stateParams',
   'stateManager',
 function(
   $timeout,
   $state,
   $window,
+  $stateParams,
   stateManager
 ){
   return {
@@ -126,6 +128,10 @@ function(
         }, 4000);
 
       };
+      // If we are already presenting lets get this show on the road
+      if ($scope.stateManager.isPresenting) {
+        $scope.start();
+      }
 
       // Go to the next section
       $scope.$on('nextEvent', function (event, data) {
@@ -135,7 +141,7 @@ function(
         $('.intro').fadeOut(500);
         $('#calendar').fadeOut(500);
         $timeout(function() {
-          $state.go('medical', {member_id: 1});
+          $state.go('medical', {member_id: $stateParams.member_id});
         }, 500);
       });
     }

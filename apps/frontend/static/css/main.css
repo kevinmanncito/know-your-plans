@@ -28,7 +28,8 @@
     margin: auto;
 }
 
-.intro {
+.intro,
+.med-title {
     display: none;
     text-align: center;
     margin-top: 100px;
