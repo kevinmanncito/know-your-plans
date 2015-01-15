@@ -28,11 +28,18 @@ angular.module( 'lk.medical', [
 
 .controller( 'MedicalCtrl', [
   '$scope', 
+  '$sce',
   'member',
 function (
   $scope, 
+  $sce,
   member
 ) {
+
+  // Replace the copay pipes with line breaks
+  for (i in member.data.medical_plans) {
+      member.data.medical_plans[i].copays = $sce.trustAsHtml(member.data.medical_plans[i].copays.replace(/\|/g, '<br>'));
+  }
   
   $scope.member = member.data;
 
@@ -63,6 +70,8 @@ function(
       $scope.track = new Audio('/static/assets/audio/Intro.m4a');
       $scope.stateManager = stateManager;
       $scope.plans = $scope.member.medical_plans;
+
+      $scope.firstPlan = $scope.plans.shift();
 
       $scope.start = function() {
         $scope.stateManager.isPresenting = true;

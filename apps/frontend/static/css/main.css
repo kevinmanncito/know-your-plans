@@ -95,6 +95,35 @@
     text-align: left;
 }
 
-#medical-table tr {
-    margin: 5px;
+.lk-table {
+    display: table;
 }
+
+.lk-row {
+    display: table-row;
+}
+
+.lk-cell-header {
+    display: table-cell;
+    font-weight: bold;
+}
+
+.lk-cell {
+    display:  table-cell;
+}
+
+.tower {
+    text-align: center;
+    display: inline-block;
+    width: 100px;
+}
+
+.tower span {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+
+
+
+
