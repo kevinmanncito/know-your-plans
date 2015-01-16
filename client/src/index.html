@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html ng-app="lkScaffold" ng-controller="AppCtrl">
-  <head>
-    <title ng-bind="pageTitle"></title>
+<html ng-app="knowYourPlans" ng-controller="AppCtrl">
+<head>
+    <title>Know Your Plans</title>
+    
+    <link rel="stylesheet" type="text/css" href="/static/vendor/normalize-css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/static/vendor/animate-css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/vendor/fullcalendar/dist/fullcalendar.css">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="/static/<%= file %>" /><% }); %>
+    <link rel="stylesheet" type="text/css" href="/static/core/<%= file %>" /><% }); %>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-    <script type="text/javascript" src="/static/<%= file %>"></script><% }); %>
+    <script type="text/javascript" src="/static/core/<%= file %>"></script><% }); %>
 
-  </head>
-  <body>
-    <div class="container">
-      <side-bar></side-bar>
-      <div class="lk-view" ui-view="main"></div>
-    </div>
-  </body>
+</head>
+<body>
+  <div class="container">
+    <div ui-view="main"></div>
+  </div>
+</body>
 </html>

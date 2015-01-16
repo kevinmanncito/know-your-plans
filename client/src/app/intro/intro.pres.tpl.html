@@ -1,0 +1,6 @@
+<div>
+  <div class="play" ng-click="start()" ng-if="!stateManager.isPresenting"></div>
+  <h1 class="intro">Hello, {{ member.firstname }}</h1>
+  <div id="calendar"></div>
+  <controls class="controls" ng-show="stateManager.isPresenting || !stateManager.firstLoad"></controls>
+</div>

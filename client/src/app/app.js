@@ -1,20 +1,25 @@
-angular.module( 'lkScaffold', [
-  'templates-app',
-  'templates-common',
-  'lk.about',
+angular.module( 'knowYourPlans', [
+  'lk.intro',
+  'lk.medical',
+  'lk.controls',
+  'lk.data',
   'ui.router.state',
-  'ui.route'
+  'ui.router'
 ])
 
 
-  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise( '/about' );
-  }])
+.config([
+  '$urlRouterProvider',
+function (
+  $urlRouterProvider
+) {
+  $urlRouterProvider.otherwise( '/intro?member_id=1' );
+}])
 
 
-  .run( function run () {
-  })
+.run([function () {
+}])
 
 
-  .controller('AppCtrl', ['$scope', '$location', function ($scope, $location) {
-  }]);
+.controller('AppCtrl', [function () {
+}]);
