@@ -1,2 +1,4 @@
 *.pyc
-apps/frontend/static/vendor
+server/apps/frontend/static/vendor
+client/vendor
+client/node_modules
