@@ -9,7 +9,7 @@ angular.module( 'lk.intro', [
     views: {
       "main": {
         controller: 'IntroCtrl',
-        templateUrl: '/static/js/intro/intro.tpl.html'
+        templateUrl: 'intro/intro.tpl.html'
       }
     },
     resolve: {
@@ -57,10 +57,10 @@ function(
       member: '='
     }, 
     restrict: 'E', 
-    templateUrl: '/static/js/intro/intro.pres.tpl.html',
+    templateUrl: 'intro/intro.pres.tpl.html',
     replace: true,
     link: function($scope, elem, atts) {
-      $scope.introTrack = new Audio('/static/assets/audio/open_enrollment_intro.mp3');
+      $scope.introTrack = new Audio('/static/core/assets/audio/open_enrollment_intro.mp3');
       $scope.stateManager = stateManager;
 
       var openEnrollmentEventObject = {

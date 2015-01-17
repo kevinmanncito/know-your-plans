@@ -1,0 +1,38 @@
+<div>
+  <div class="play" ng-click="start()" ng-if="!stateManager.isPresenting"></div>
+
+  <div id="first-plan" class="plan">
+    <h2>{{ firstPlan.carrier.name }}</h2>
+    <span>{{ firstPlan.name }}</span>
+    Features:
+    <ul>
+      <li><span>Copays: <span ng-bind-html="firstPlan.copays"></span></span></li>
+      <li><span>Family deductable:{{ firstPlan.family_deductable }}</span></li>
+      <li><span>Individual deductable:{{ firstPlan.individual_deductable }}</span></li>
+    </ul>
+  </div>
+
+  <div id="second-plan" class="plan">
+    <h2>{{ secondPlan.carrier.name }}</h2>
+    <span>{{ secondPlan.name }}</span>
+    Features:
+    <ul>
+      <li><span>Copays: <span ng-bind-html="secondPlan.copays"></span></span></li>
+      <li><span>Family deductable:{{ secondPlan.family_deductable }}</span></li>
+      <li><span>Individual deductable:{{ secondPlan.individual_deductable }}</span></li>
+    </ul>
+  </div>
+
+  <div id="third-plan" class="plan">
+    <h2>{{ thirdPlan.carrier.name }}</h2>
+    <span>{{ thirdPlan.name }}</span>
+    Features:
+    <ul>
+      <li><span>Copays: <span ng-bind-html="thirdPlan.copays"></span></span></li>
+      <li><span>Family deductable:{{ thirdPlan.family_deductable }}</span></li>
+      <li><span>Individual deductable:{{ thirdPlan.individual_deductable }}</span></li>
+    </ul>
+  </div>
+  
+  <controls class="controls" ng-show="stateManager.isPresenting || !stateManager.firstLoad"></controls>
+</div>

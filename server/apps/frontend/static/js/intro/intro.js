@@ -60,7 +60,7 @@ function(
     templateUrl: '/static/js/intro/intro.pres.tpl.html',
     replace: true,
     link: function($scope, elem, atts) {
-      $scope.introTrack = new Audio('/static/assets/audio/Intro.m4a');
+      $scope.introTrack = new Audio('/static/assets/audio/open_enrollment_intro.mp3');
       $scope.stateManager = stateManager;
 
       var openEnrollmentEventObject = {

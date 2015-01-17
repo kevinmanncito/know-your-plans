@@ -61,13 +61,16 @@ module.exports = {
     js: [
       'vendor/angular/angular.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/jquery/dist/jquery.js',
       'vendor/jquery/moment.js',
-      'vendor/fullcalendar/dist/fullcallendar.js',
+      'vendor/jquery/dist/jquery.js',
+      'vendor/letteringjs/jquery.lettering.js',
       'vendor/textillate/jquery.textillate.js',
-      'vendor/letteringjs/jquery.lettering.js'
+      'vendor/fullcalendar/dist/fullcalendar.js'
     ],
     css: [
+      'vendor/normalize-css/normalize.css',
+      'vendor/animate-css/animate.css',
+      'vendor/fullcalendar/dist/fullcalendar.css'
     ],
     assets: [
     ]

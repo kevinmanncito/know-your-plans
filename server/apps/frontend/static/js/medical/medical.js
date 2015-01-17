@@ -46,6 +46,17 @@ function (
 }])
 
 
+.directive('medicalPlan', [function(){
+  return {
+    scope: {
+      plan: '='
+    },
+    restrict: 'E',
+    templateUrl: '/static/js/medical/medicalPlan.tpl.html'
+  };
+}])
+
+
 .directive('medicalPres', [
   '$timeout',
   '$state',
@@ -67,11 +78,13 @@ function(
     templateUrl: '/static/js/medical/medical.pres.tpl.html',
     replace: true,
     link: function($scope, elem, atts) {
-      $scope.track = new Audio('/static/assets/audio/Intro.m4a');
+      $scope.track = new Audio('/static/assets/audio/open_enrollment_intro.mp3');
       $scope.stateManager = stateManager;
       $scope.plans = $scope.member.medical_plans;
 
       $scope.firstPlan = $scope.plans.shift();
+      $scope.secondPlan = $scope.plans.shift();
+      $scope.thirdPlan = $scope.plans.shift();
 
       $scope.start = function() {
         $scope.stateManager.isPresenting = true;
@@ -88,11 +101,48 @@ function(
           });
         }, 500);
 
-        // Display table
+        // Display first plan
         $timeout(function() {
-          $scope.showTable = true;
-          $('#medical-table').fadeIn(500);
+          $('#first-plan').fadeIn(500);
         }, 2000);
+        // move plan over
+        $timeout(function() {
+          $('#first-plan').animate({
+            left: '175px',
+            opacity: '0.5',
+            height: '275px',
+            width: '275px'
+          }, 'slow');
+        }, 3000);
+
+        // Display second plan
+        $timeout(function() {
+          $('#second-plan').fadeIn(500);
+        }, 4000);
+        // move plan over
+        $timeout(function() {
+          $('#second-plan').animate({
+            left: '200px',
+            top: '125px',
+            height: '275px',
+            width: '275px'
+          }, 'slow');
+        }, 5000);
+
+        // Display third plan
+        $timeout(function() {
+          $('#third-plan').fadeIn(500);
+        }, 6000);
+        // move plan over
+        $timeout(function() {
+          $('#third-plan').animate({
+            left: '225px',
+            top: '150px',
+            height: '275px',
+            width: '275px'
+          }, 'slow');
+        }, 7000);
+
       };
 
       // If we are already presenting lets get this show on the road

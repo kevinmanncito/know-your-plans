@@ -1,4 +1,6 @@
 angular.module( 'knowYourPlans', [
+  'templates-app',
+  'templates-common',
   'lk.intro',
   'lk.medical',
   'lk.controls',

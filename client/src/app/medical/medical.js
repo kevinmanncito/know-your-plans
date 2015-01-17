@@ -9,7 +9,7 @@ angular.module( 'lk.medical', [
     views: {
       "main": {
         controller: 'MedicalCtrl',
-        templateUrl: '/static/js/medical/medical.tpl.html'
+        templateUrl: 'medical/medical.tpl.html'
       }
     },
     resolve: {
@@ -64,7 +64,7 @@ function(
       member: '='
     }, 
     restrict: 'E', 
-    templateUrl: '/static/js/medical/medical.pres.tpl.html',
+    templateUrl: 'medical/medical.pres.tpl.html',
     replace: true,
     link: function($scope, elem, atts) {
       $scope.track = new Audio('/static/assets/audio/open_enrollment_intro.mp3');
