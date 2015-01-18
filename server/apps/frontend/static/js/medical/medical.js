@@ -38,7 +38,7 @@ function (
 
   // Replace the copay pipes with line breaks
   for (i in member.data.medical_plans) {
-      member.data.medical_plans[i].copays = $sce.trustAsHtml(member.data.medical_plans[i].copays.replace(/\|/g, '<br>'));
+    member.data.medical_plans[i].copays = $sce.trustAsHtml("Copays: " + member.data.medical_plans[i].copays.replace(/\|/g, '<br>'));
   }
   
   $scope.member = member.data;
@@ -49,7 +49,8 @@ function (
 .directive('medicalPlan', [function(){
   return {
     scope: {
-      plan: '='
+      plan: '=',
+      planId: '='
     },
     restrict: 'E',
     templateUrl: '/static/js/medical/medicalPlan.tpl.html'
@@ -77,7 +78,7 @@ function(
     restrict: 'E', 
     templateUrl: '/static/js/medical/medical.pres.tpl.html',
     replace: true,
-    link: function($scope, elem, atts) {
+    link: function($scope, elem, attrs) {
       $scope.track = new Audio('/static/assets/audio/open_enrollment_intro.mp3');
       $scope.stateManager = stateManager;
       $scope.plans = $scope.member.medical_plans;
@@ -101,47 +102,68 @@ function(
           });
         }, 500);
 
+        $firstPlan = $('#first-plan');
+        $secondPlan = $('#second-plan');
+        $thirdPlan = $('#third-plan');
+
         // Display first plan
         $timeout(function() {
-          $('#first-plan').fadeIn(500);
-        }, 2000);
-        // move plan over
+          $firstPlan.fadeIn(500);
+        }, 500);
+        // highlight stuff
         $timeout(function() {
-          $('#first-plan').animate({
-            left: '175px',
+          var highlightTime = 1000.
+              highlightInterval = 1000;
+          $firstPlan.find("li").each(function(i, li) {
+            $timeout(function() {
+              $(li).addClass('highlight');
+            }, highlightTime);
+            highlightTime += highlightInterval;
+            $timeout(function() {
+              $(li).removeClass('highlight');
+            }, highlightTime);
+            highlightTime += highlightInterval;
+          });
+        }, 1000);
+        // move plan to the left
+        $timeout(function() {
+          $firstPlan.animate({
+            left: '22%',
+            top: '125px',
             opacity: '0.5',
             height: '275px',
             width: '275px'
           }, 'slow');
-        }, 3000);
+        }, 8000);
 
         // Display second plan
         $timeout(function() {
-          $('#second-plan').fadeIn(500);
-        }, 4000);
-        // move plan over
+          $secondPlan.fadeIn(500);
+        }, 10000);
+        // move plan to the right
         $timeout(function() {
-          $('#second-plan').animate({
-            left: '200px',
+          $secondPlan.animate({
+            left: '80%',
             top: '125px',
+            opacity: '0.5',
             height: '275px',
             width: '275px'
           }, 'slow');
-        }, 5000);
+        }, 11000);
 
         // Display third plan
         $timeout(function() {
-          $('#third-plan').fadeIn(500);
-        }, 6000);
+          $thirdPlan.fadeIn(500);
+        }, 14000);
         // move plan over
-        $timeout(function() {
-          $('#third-plan').animate({
-            left: '225px',
-            top: '150px',
-            height: '275px',
-            width: '275px'
-          }, 'slow');
-        }, 7000);
+        // $timeout(function() {
+        //   $thirdPlan.animate({
+        //     left: '225px',
+        //     top: '150px',
+        //     height: '275px',
+        //     width: '275px'
+        //   }, 'slow');
+        // }, 15000);
 
       };
 
