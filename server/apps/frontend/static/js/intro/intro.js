@@ -28,13 +28,29 @@ angular.module( 'lk.intro', [
 
 .controller( 'IntroCtrl', [
   '$scope', 
+  '$window',
   'member',
 function (
   $scope, 
+  $window,
   member
 ) {
   
   $scope.member = member.data;
+  var start = moment($scope.member.organization.open_enroll_start),
+      end = moment($scope.member.organization.open_enroll_end),
+      eventList = [];
+  for (var d = start; d <= end; d.add(1, 'days')) {
+    eventList.push({
+      title: 'Enroll!',
+      allDay: true,
+      start: d.calendar(),
+      end: d.calendar(),
+      url: $scope.member.organization.enroll_url
+    });
+  };
+
+  $scope.events = eventList;
 
 }])
 
@@ -54,7 +70,8 @@ function(
 ){
   return {
     scope: {
-      member: '='
+      member: '=',
+      events: '='
     }, 
     restrict: 'E', 
     templateUrl: '/static/js/intro/intro.pres.tpl.html',
@@ -64,10 +81,10 @@ function(
       $scope.stateManager = stateManager;
 
       var openEnrollmentEventObject = {
-        title: 'Open Enrollment',
+        title: '',
         allDay: true,
         start: $scope.member.organization.open_enroll_start,
-        end: $scope.member.organization.open_enroll_end,
+        end: $scope.member.organization.open_enroll_start,
         url: $scope.member.organization.enroll_url
       };
 
@@ -75,7 +92,22 @@ function(
         $scope.stateManager.isPresenting = true;
         $scope.introTrack.play();
 
-        // Show the controls and welcome text
+        // Animate the logo into the center
+        $timeout(function() {
+          var $logo = $('.logo');
+          $logo.show();
+          $logo.animate({
+            left: '50%'
+          }, 800);
+          $logo.effect('bounce', {}, 1000);
+        }, 50);
+
+        // Get rid of logo
+        $timeout(function() {
+          $('.logo').fadeOut(200);
+        }, 2000);
+
+        // Show name
         $timeout(function() {
           var $intro = $('.intro');
           $intro.show();
@@ -83,21 +115,34 @@ function(
             in: {
               effect: 'fadeInDown'
             }
-          });
+          }, 600);
+        }, 2500);
+
+        // Move stuff over to the left
+        $timeout(function() {
+          $('.logo').fadeOut(200);
+          $('.intro-wrapper').animate({
+            left: '150px'
+          }, 600);
+        }, 3500);
+
+        // Show the controls and welcome text
+        $timeout(function() {
+    
           $scope.stateManager.isPresenting = true;
           $('.controls').fadeIn(1000);
-        }, 2000);
+        }, 4000);
 
         // Show the calendar
         $timeout(function() {
           $('#calendar').fadeIn(1000);
           $('#calendar').fullCalendar({
             defaultDate: $scope.member.organization.open_enroll_start,
-            height: 450,
+            height: 400,
             header: {
               left: 'title',
               center: '',
-              right: 'prev,next'
+              right: ''
             },
             eventClick: function(event) {
               if (event.url) {
@@ -106,26 +151,27 @@ function(
               }
             }
           });
-          $('#calendar').fullCalendar('renderEvent', openEnrollmentEventObject, []);
-          $('.intro').textillate( {
-            out: {
-              effect: 'hinge',
-              delayScale: 1.5,
-              delay: 50,
-              sync: false,
-              shuffle: false,
-              reverse: false,
-              callback: function () {}
-            },
+          // cycle through events and show them one at a time
+          var dateInterval = 200;
+          angular.forEach($scope.events, function(e, index) {
+            $timeout(function() {
+              $('#calendar').fullCalendar('renderEvent', e, []);
+            }, dateInterval);
+            dateInterval += 500;
           });
-          // Transition the welcome text to the calendar header
-          $('.intro').textillate('out');
           $timeout(function() {
-            $('.intro').hide();
-            $('.intro').html('Open Enrollment Dates');
-            $('.intro').fadeIn(1000);
+            console.log('showing sub');
+            $('.sub').fadeIn(1000);
+            $('.start').fadeIn(1000);
+            $end = $('.end');
+            $end.fadeIn(100);
+            $end.textillate( {
+              in: {
+                effect: 'pulse'
+              }
+            }, 3000);
           }, 3000);
-        }, 4000);
+        }, 6000);
 
       };
       // If we are already presenting lets get this show on the road

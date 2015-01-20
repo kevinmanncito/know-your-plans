@@ -113,7 +113,7 @@ function(
         // highlight stuff
         $timeout(function() {
           var highlightTime = 1000.
-              highlightInterval = 1000;
+              highlightInterval = 500;
           $firstPlan.find("li").each(function(i, li) {
             $timeout(function() {
               $(li).addClass('highlight');
@@ -122,7 +122,6 @@ function(
             $timeout(function() {
               $(li).removeClass('highlight');
             }, highlightTime);
-            highlightTime += highlightInterval;
           });
         }, 1000);
         // move plan to the left
@@ -169,7 +168,10 @@ function(
 
       // If we are already presenting lets get this show on the road
       if ($scope.stateManager.isPresenting) {
-        $scope.start();
+        console.log('isPresenting');
+        $timeout(function() {
+          $scope.start();
+        }, 50);
       }
 
       // Go to the next section

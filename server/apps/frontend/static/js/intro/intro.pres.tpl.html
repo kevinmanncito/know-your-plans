@@ -1,6 +1,12 @@
 <div>
+  <img src="/static/assets/img/logo.jpg" alt="" class="logo">
   <div class="play" ng-click="start()" ng-if="!stateManager.isPresenting"></div>
-  <h1 class="intro">Hello, {{ member.firstname }}</h1>
+  <div class="intro-wrapper">
+    <h1 class="intro">Hello, {{ member.firstname }}</h1>
+    <h2 class="sub">Open Enrollment Dates:</h2>
+    <h3 class="start">Start: {{ member.organization.open_enroll_start }}</h3>
+    <h3 class="end">End: {{ member.organization.open_enroll_end }}</h3>
+  </div>
   <div id="calendar"></div>
   <controls class="controls" ng-show="stateManager.isPresenting || !stateManager.firstLoad"></controls>
 </div>
